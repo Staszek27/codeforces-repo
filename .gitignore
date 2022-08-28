@@ -1,0 +1,4 @@
+rounds/*
+!rounds/progs
+rounds/progs/*
+others/*
