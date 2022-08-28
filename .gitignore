@@ -2,4 +2,4 @@ rounds/*
 rounds/progs/*
 others/*
 
-!rounds/progs
+!rounds/progs/x
