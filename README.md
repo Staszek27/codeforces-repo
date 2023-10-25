@@ -1,3 +1,5 @@
+### README.md deprecated -- Work in progress
+
 ### Tool to create a file system for codeforces contests in an easy way
 
 #### Step 1 [prepare a directory]
