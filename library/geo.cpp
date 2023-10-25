@@ -7,31 +7,21 @@
 #include <queue>
 #include <utility>
 #include <algorithm>
-#include <cassert>
+#include <cmath>
 
 using namespace std;
 typedef long long ll;
 typedef pair<ll, ll> pi;
 typedef vector<ll> vi;
 
-
-const int S = 1e6 + 7;
-const int mod = 1e9 + 7;
-int tab[S], n, m;
-
 // inject here
 
-void solve(){
+struct point{
+    double x, y;
 
-}
-
-
-int main(){
-    ios_base::sync_with_stdio(0);
-    int t = 1;
-    cin >> t;
-    while (t --)
-        solve();
-
-    return 0;
-}
+    double dist(point other){
+        double diff_x = other.x - x;
+        double diff_y = other.y - y;
+        return sqrt(diff_x * diff_x + diff_y * diff_y);
+    }
+};
