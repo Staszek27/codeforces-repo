@@ -25,3 +25,10 @@ struct point{
         return sqrt(diff_x * diff_x + diff_y * diff_y);
     }
 };
+
+// inject stop
+
+int main() {
+    cout << "[NOT TESTED]\n";
+    return 0;
+}

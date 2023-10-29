@@ -22,3 +22,10 @@ void deb(vi X, string pref = "!") {
         cout << e << " ";
     cout << " }\n";
 }
+
+// inject stop
+
+int main() {
+    cout << "[NOT TESTED]\n";
+    return 0;
+}

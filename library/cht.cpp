@@ -60,3 +60,10 @@ struct CHT {
         return lines[query_i(qx)](qx);
     }
 };
+
+// inject stop
+
+int main() {
+    cout << "[NOT TESTED]\n";
+    return 0;
+}

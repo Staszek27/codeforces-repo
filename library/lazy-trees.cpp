@@ -20,7 +20,7 @@ typedef vector<ll> vi;
 // sum / sum by default
 template <typename T, typename L>
 struct tree{
-    T lazy_to_lazy_f(const L &x, const L &y) {
+    L lazy_to_lazy_f(const L &x, const L &y) {
         return x + y; // TODO
     }
 
@@ -50,6 +50,9 @@ struct tree{
         this->init_val_arr = init_val_arr;
         this->init_val_lazy = init_val_lazy;
         this->query_default_val = query_default_val;
+        arr.clear();
+        lazy.clear();
+        to_clear.clear();
         arr.resize(total_capacity(), init_val_arr);
         lazy.resize(total_capacity(), init_val_lazy);
         to_clear.resize(total_capacity(), 0);
@@ -59,18 +62,27 @@ struct tree{
         for (int i = 0; i < v.size(); i ++){
             arr[i + tree_size] = v[i];
         }
-        for (int i = lvl - 1; i >= 0; i --) {
-            for (int j = (1 << i); j < (1 << (i + 1)); j ++) {
-                arr[j] = query_f(arr[j * 2], arr[j * 2 + 1]);
+        int beg = tree_size;
+        int en = tree_size + v.size() - 1;
+        while (beg > 1) {
+            beg /= 2; en /= 2;
+            for (int i = beg; i <= en; i ++) {
+                arr[i] = query_f(arr[i * 2], arr[i * 2 + 1]);
             }
         }
     }
 
-    void clean() {
-        for (int i = 0; i < total_capacity(); i ++) {
-            arr[i] = init_val_arr;
-            lazy[i] = init_val_lazy;
-            to_clear[i] = false;
+    void clean(int n) {
+        int beg = tree_size;
+        int en = tree_size + n;
+        while (beg >= 1) {
+            for (int i = beg; i <= en; i ++) {
+                lazy[i] = init_val_lazy;
+                arr[i] = init_val_arr;
+                to_clear[i] = 0;
+            }
+            beg /= 2;
+            en /= 2;
         }
     }
 
@@ -102,7 +114,7 @@ struct tree{
         return t_beg > en || t_en < beg;
     }
 
-    void upd(int beg, int en, T val, bool just_set = false, int v = 1, int t_beg = -1, int t_en = -1) {
+    void upd(int beg, int en, L val, bool just_set = false, int v = 1, int t_beg = -1, int t_en = -1) {
         if (prepare_beg_en(beg, en, v, t_beg, t_en)) return;
         if (beg <= t_beg && t_en <= en) {
             lazy[v] = lazy_to_lazy_f(
@@ -146,3 +158,10 @@ struct tree{
         }
     }
 };
+
+// inject stop
+
+int main() {
+    cout << "[NOT TESTED]\n";
+    return 0;
+}

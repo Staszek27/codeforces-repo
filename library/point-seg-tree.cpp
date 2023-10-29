@@ -52,3 +52,10 @@ struct tree{
         return res;
     }
 };
+
+// inject stop
+
+int main() {
+    cout << "[NOT TESTED]\n";
+    return 0;
+}

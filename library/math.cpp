@@ -56,3 +56,10 @@ ll newton(ll x, ll y){
         inv(mult(sil(x - y), sil(y)))
     );
 }
+
+// inject stop
+
+int main() {
+    cout << "[NOT TESTED]\n";
+    return 0;
+}

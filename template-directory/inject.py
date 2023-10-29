@@ -1,6 +1,7 @@
 import sys
 import os
 key_word = "// inject here"
+key_word_stop = "// inject stop"
 library_path = "/Users/michal/Documents/codeforces/codeforces-repo/library"
 
 def get_art_begin(lib_name):
@@ -22,11 +23,12 @@ def get_art_en(lib_name):
 def get_content(name):
     with open(f"{library_path}/{name}.cpp", "r") as file_obj:
         file_data = file_obj.read()
-        ind = file_data.index(key_word)
+        ind = file_data.find(key_word)
+        ind_stop = file_data.find(key_word_stop)
         ind += len(key_word)
         return "{}{}{}".format(
             get_art_begin(name),
-            file_data[ind:],
+            file_data[ind:ind_stop],
             get_art_en(name),
         )
     
