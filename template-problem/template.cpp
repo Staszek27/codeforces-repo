@@ -36,13 +36,9 @@ template<typename T> using PQG = priority_queue<T>;
 
 // inject here
 
-const int S = 1e6 + 7;
-int n, m;
-
 void solve(){
 
 }
-
 
 int main(){
     ios_base::sync_with_stdio(0);
