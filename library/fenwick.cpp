@@ -9,12 +9,12 @@ struct Fenwick{ // TODO
     int n;
 
     Fenwick(int _n) {
-        arr.assign(n + 1, T{});
         n = _n;
+        arr.assign(n + 1, T{});
     }
 
-    void clean() {
-        for (int i = 0; i <= n; i ++) {
+    void clean(int m) {
+        for (int i = 0; i <= m; i ++) {
             arr[i] = T{};
         }
     }
@@ -79,7 +79,7 @@ void test1() {
                 }
             }
         }
-        F.clean();
+        F.clean(S);
         dot();
     }
     
@@ -105,7 +105,7 @@ void test2() {
                 }
             }
         }
-        F.clean();
+        F.clean(S);
         dot();
     }
    // tim.record();
