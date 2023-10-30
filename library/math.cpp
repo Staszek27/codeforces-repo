@@ -1,18 +1,5 @@
-#include <iostream>
-#include <map>
-#include <unordered_map>
-#include <vector>
-#include <unordered_set>
-#include <set>
-#include <queue>
-#include <utility>
-#include <algorithm>
-#include <cassert>
+#include "global.cpp"
 
-using namespace std;
-typedef long long ll;
-typedef pair<ll, ll> pi;
-typedef vector<ll> vi;
 
 // inject here
 
@@ -60,6 +47,7 @@ ll newton(ll x, ll y){
 // inject stop
 
 int main() {
-    cout << "[NOT TESTED]\n";
+    timer tim;
+    tim.ok();
     return 0;
 }

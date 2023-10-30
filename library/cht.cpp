@@ -1,15 +1,4 @@
-#include <iostream>
-#include <map>
-#include <unordered_map>
-#include <vector>
-#include <unordered_set>
-#include <set>
-#include <queue>
-#include <utility>
-#include <algorithm>
-#include <cassert>
-using namespace std;
-typedef long long ll;
+#include "global.cpp"
 
 // inject here
  
@@ -64,6 +53,6 @@ struct CHT {
 // inject stop
 
 int main() {
-    cout << "[NOT TESTED]\n";
+    no_tested();
     return 0;
 }

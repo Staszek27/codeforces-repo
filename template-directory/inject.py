@@ -34,9 +34,9 @@ def get_content(name):
     
 
 
-def inject_content(content):
+def inject_content(content, letter):
     data = None
-    dest_file = os.path.join('.', "wzor.cpp")
+    dest_file = os.path.join(letter, "wzor.cpp")
     with open(dest_file, "r") as file_obj:
         file_data = file_obj.read()
         data = file_data.replace(key_word, f"{key_word}\n{content}")
@@ -51,7 +51,7 @@ try:
     else:   
         letter = sys.argv[2]
         content_to_inject = get_content(lib_name)
-        inject_content(content_to_inject)
+        inject_content(content_to_inject, letter)
 except IndexError:
     print("Please use like:")
     print("1. python3 inject.py -ls")

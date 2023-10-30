@@ -1,10 +1,11 @@
 import os
+import sys
 import subprocess
 
 
 
 LIBRARY_PATH = "library"
-IGNORE = set([".DS_Store"])
+IGNORE = set([".DS_Store", "global.cpp"])
 
 def get_all_files():
     return [os.path.join(LIBRARY_PATH, e) for e in list(os.walk(LIBRARY_PATH))[0][2]]
@@ -18,6 +19,9 @@ def test(path):
     os.remove("./file")
 
 if __name__ == "__main__":
-    for path in get_all_files():
-        test(path)
+    if len(sys.argv) > 1:
+        test(sys.argv[1])
+    else:
+        for path in get_all_files():
+            test(path)
     

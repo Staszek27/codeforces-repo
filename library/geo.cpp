@@ -1,18 +1,5 @@
-#include <iostream>
-#include <map>
-#include <unordered_map>
-#include <vector>
-#include <unordered_set>
-#include <set>
-#include <queue>
-#include <utility>
-#include <algorithm>
-#include <cmath>
+#include "global.cpp"
 
-using namespace std;
-typedef long long ll;
-typedef pair<ll, ll> pi;
-typedef vector<ll> vi;
 
 // inject here
 
@@ -29,6 +16,7 @@ struct point{
 // inject stop
 
 int main() {
-    cout << "[NOT TESTED]\n";
+    timer tim;
+    tim.ok();
     return 0;
 }
