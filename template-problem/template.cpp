@@ -36,8 +36,6 @@ template<typename T> using PQG = priority_queue<T>;
 
 // inject here
 
-// TODO: Test Library
-
 const int S = 1e6 + 7;
 int n, m;
 
