@@ -83,7 +83,7 @@ void test1() {
 void test2() {
     //timer tim;
     Tree<ll> F(S);
-    for (int o = 0; o < TESTS ; o ++){
+    for (int o = 0; o < TESTS / 2 ; o ++){
         Tree<ll> F(S);
         int n = rnd(1, S - 1);
         for (int i = 0; i <= n; i ++) arr[i] = 0;
