@@ -4,6 +4,11 @@ key_word = "// inject here"
 key_word_stop = "// inject stop"
 library_path = "/Users/michal/Documents/codeforces/codeforces-repo/library"
 
+def place_string_in_the_middle(word, c, total):
+    rest = total - len(word)
+    l, r = rest // 2, rest - rest // 2
+    return f"{c*l}{word}{c*r}"
+
 def get_lib_templates(lib_name):
     ascii_art = """
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -22,11 +27,13 @@ def get_lib_templates(lib_name):
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 """
     l = max(len(line) for line in ascii_art.split('\n'))
-    begin_word = BEGIN
-    return f"{first_line}\n{ascii_art}\n{end_line1}", end_line2
+    begin_line = f"BEGIN ~~~~~ [{lib_name}]"
+    end_line   = f"END   ~~~~~ [{lib_name}]"
+    return f"{begin_line}\n{ascii_art}\n", end_line
 
-def get_art_en(lib_name):
-    return "// -----   END: {}   -----\n\n".format(lib_name)
+def comment(s):
+    return "\n".join([f"// {line}" for line in s.split("\n")])
+
 
 def get_content(name):
     with open(f"{library_path}/{name}.cpp", "r") as file_obj:
@@ -36,9 +43,9 @@ def get_content(name):
         ind += len(key_word)
         begin, end = get_lib_templates(name)
         return "{}{}{}".format(
-            begin,
+            comment(begin),
             file_data[ind:ind_stop],
-            end,
+            comment(end),
         )
     
 

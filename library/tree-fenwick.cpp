@@ -3,25 +3,19 @@
 // inject here
 
 template<typename T>
-struct Fenwick{ // TODO
+struct Tree{ // TODO
     // Range [1, n]
     vector<T> arr;
     int n;
 
-    Fenwick(int _n) {
+    Tree(int _n) {
         n = _n;
-        arr.assign(n + 1, T{});
-    }
-
-    void clean(int m) {
-        for (int i = 0; i <= m; i ++) {
-            arr[i] = T{};
-        }
+        arr.assign(n + 2, T{});
     }
 
     void upd(int node, const T& val) {
         for (int i = node; i <= n; i += i & -i)
-            arr[i] = arr[i] + val;
+            arr[i] += val;
     }
 
     void upd(int beg, int en, const T& val) {
@@ -30,9 +24,9 @@ struct Fenwick{ // TODO
     }
 
     T query(int node) {
-        T res = 0;
+        T res = {};
         for (int i = node; i > 0; i -= i & -i) 
-            res = res + arr[i];
+            res += arr[i];
         return res;
     }
 
@@ -61,14 +55,16 @@ int query(int x, int y) {
 }
 
 void test1() {
-    Fenwick<int> F(S);
+    
     for (int o = 0; o < TESTS / 2; o ++) {
-        for (int i = 0; i < S; i ++) arr[i] = 0;
+        Tree<ll> F(S);
+        int n = rnd(1, S - 1);
+        for (int i = 0; i <= n; i ++) arr[i] = 0;
         for (int i = 0; i <= S; i ++) {
-            int beg = rnd(1, S - 1);
-            int en = rnd(beg, S - 1);
+            int beg = rnd(1, n);
+            int en = rnd(beg, n);
             int val = rnd(1, 10);
-            // cout << i << " " << beg << " " << en << " " << val << endl;
+         //   cout << i << " " << beg << " " << en << " " << val << endl;
             if (i & 1) {
                 upd(beg, en, val);
                 F.upd(beg, en, val);
@@ -79,7 +75,6 @@ void test1() {
                 }
             }
         }
-        F.clean(S);
         dot();
     }
     
@@ -87,12 +82,14 @@ void test1() {
 
 void test2() {
     //timer tim;
-    Fenwick<int> F(S);
-    for (int o = 0; o < TESTS / 2; o ++){
-        for (int i = 0; i < S; i ++) arr[i] = 0;
+    Tree<ll> F(S);
+    for (int o = 0; o < TESTS ; o ++){
+        Tree<ll> F(S);
+        int n = rnd(1, S - 1);
+        for (int i = 0; i <= n; i ++) arr[i] = 0;
         for (int i = 0; i <= S; i ++) {
-            int beg = rnd(1, S - 1);
-            int en = rnd(beg, S - 1);
+            int beg = rnd(1, n);
+            int en = rnd(beg, n);
             int val = rnd(1, 10);
             // cout << i << " " << beg << " " << en << " " << val << endl;
             if (i & 1) {
@@ -105,7 +102,6 @@ void test2() {
                 }
             }
         }
-        F.clean(S);
         dot();
     }
    // tim.record();

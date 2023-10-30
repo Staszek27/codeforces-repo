@@ -34,6 +34,7 @@ struct timer{
     }
 
     timer() {
+        srand(1);
         start = get_time();
     }
 
@@ -61,7 +62,7 @@ void dot() {
 
 
 void nok() {
-    cout << " [NOK !!!]\n";
+    cout << " [NOK !!!]" << endl;
     exit(0);
 }
 
@@ -72,6 +73,5 @@ void no_tested() {
 }
 
 int rnd(int poc, int kon) {
-    srand(1);
     return poc + rand() % (kon - poc + 1);
 }
