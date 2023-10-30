@@ -1,5 +1,9 @@
 import sys
 import os
+import importlib  
+get_best_path_by_timestap = importlib.import_module(
+    "compile-last-modified-as-sol").get_best_path_by_timestap
+
 key_word = "// inject here"
 key_word_stop = "// inject stop"
 library_path = "/Users/michal/Documents/codeforces/codeforces-repo/library"
@@ -27,8 +31,8 @@ def get_lib_templates(lib_name):
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 """
     l = max(len(line) for line in ascii_art.split('\n'))
-    begin_line = f"BEGIN  [{lib_name}]"
-    end_line   = f"END    [{lib_name}]\n\n"
+    begin_line = f"BEGIN ~~~~~ [{lib_name}]"
+    end_line   = f"END   ~~~~~ [{lib_name}]"
     return f"{begin_line}\n{ascii_art}\n", end_line
 
 def comment(s):
@@ -65,7 +69,7 @@ try:
     if lib_name == '-ls':
         os.system(f"ls {library_path}")
     else:   
-        letter = sys.argv[2]
+        letter = get_best_path_by_timestap().split('/')[-2]
         content_to_inject = get_content(lib_name)
         inject_content(content_to_inject, letter)
 except IndexError:
