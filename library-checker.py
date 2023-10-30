@@ -22,6 +22,6 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         test(sys.argv[1])
     else:
-        for path in get_all_files():
+        for path in sorted(get_all_files()):
             test(path)
     
