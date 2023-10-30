@@ -27,8 +27,8 @@ def get_lib_templates(lib_name):
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 """
     l = max(len(line) for line in ascii_art.split('\n'))
-    begin_line = f"BEGIN ~~~~~ [{lib_name}]"
-    end_line   = f"END   ~~~~~ [{lib_name}]"
+    begin_line = f"BEGIN  [{lib_name}]"
+    end_line   = f"END    [{lib_name}]\n\n"
     return f"{begin_line}\n{ascii_art}\n", end_line
 
 def comment(s):
