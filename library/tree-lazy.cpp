@@ -34,15 +34,15 @@ ostream& operator<<(ostream& os, const TT& o) {
 // inject here
 
 template <typename T, typename L>
-struct tree{
-    L lazy_to_lazy_f(const L &x, const L &y) {
+struct Tree{
+    inline L lazy_to_lazy_f(const L &x, const L &y) {
         // TODO: only if upd
         return x + y;
     }
 
-    T lazy_to_arr_f(const L &x, const T &y, int subtree_s) { 
+    inline T lazy_to_arr_f(const L &x, const T &y, int subtree_s) { 
         // TODO: only if upd
-        TT res = {};
+        T res = {};
         for (int i = S - 1; i >= 0; i --) {
             int take_from = i - x;
             if (take_from < 0) continue;
@@ -51,12 +51,12 @@ struct tree{
         return res; 
     }
 
-    T query_f(const T &x, const T &y) {
+    inline T query_f(const T &x, const T &y) {
         // TODO: ALWAYS
         return x + y;
     }
     
-    T set_to_arr_f(const T& x, int subtree_s) {
+    inline T set_to_arr_f(const T& x, int subtree_s) {
         // TODO: only if set
         TT res = {};
         for (int i = 0; i < S; i ++) {
@@ -64,7 +64,6 @@ struct tree{
         }
         return res;
     }
-
 
     int tree_size, lvl;
     vector<T> arr, to_set;
@@ -74,12 +73,8 @@ struct tree{
     T query_default_val;
     L init_val_lazy;
 
-    int total_capacity() {
-        return tree_size * 2;
-    }
-
-    void init_values(int lvl, const T &init_val_arr, const L &init_val_lazy, const T &query_default_val) {
-        this->lvl = lvl;
+    Tree(int n, const T &init_val_arr = 0, const L &init_val_lazy = 0, const T &query_default_val = 0) {
+        this->lvl = log_floor(n);
         this->tree_size = (1 << lvl);
         this->init_val_arr = init_val_arr;
         this->init_val_lazy = init_val_lazy;
@@ -88,10 +83,10 @@ struct tree{
         lazy.clear();
         to_clear.clear();
         to_set.clear();
-        arr.resize(total_capacity(), init_val_arr);
-        lazy.resize(total_capacity(), init_val_lazy);
-        to_clear.resize(total_capacity(), false);
-        to_set.resize(total_capacity());
+        arr.resize(tree_size * 2, init_val_arr);
+        lazy.resize(tree_size * 2, init_val_lazy);
+        to_clear.resize(tree_size * 2, false);
+        to_set.resize(tree_size * 2);
     }
 
     void init_with_array(const vector<T> &v) {
@@ -105,20 +100,6 @@ struct tree{
             for (int i = beg; i <= en; i ++) {
                 arr[i] = query_f(arr[i * 2], arr[i * 2 + 1]);
             }
-        }
-    }
-
-    void clean(int n) {
-        int beg = tree_size;
-        int en = tree_size + n;
-        while (beg >= 1) {
-            for (int i = beg; i <= en; i ++) {
-                lazy[i] = init_val_lazy;
-                arr[i] = init_val_arr;
-                to_clear[i] = 0;
-            }
-            beg /= 2;
-            en /= 2;
         }
     }
 
@@ -142,31 +123,25 @@ struct tree{
         lazy[v] = init_val_lazy;
     }
 
-    // returns true if miss
-    bool prepare_beg_en(int& beg, int& en, int v, int& t_beg, int& t_en) {
-        if (v == 1) {
-            t_beg = 0;
-            t_en = tree_size - 1;
-        }
+    inline bool prepare_beg_en(int& beg, int& en, int v, int& t_beg, int& t_en) {
         push(v, t_en - t_beg + 1);
-        return t_beg > en || t_en < beg;
+        return t_beg > en || t_en < beg; // returns true if miss
     }
 
-    void upd(int beg, int en, L val, int v = 1, int t_beg = -1, int t_en = -1) {
+    void _upd(int beg, int en, const L& val, int v, int t_beg, int t_en) {
         if (prepare_beg_en(beg, en, v, t_beg, t_en)) return;
         if (beg <= t_beg && t_en <= en) {
             lazy[v] = lazy_to_lazy_f(lazy[v], val);
             push(v, t_en - t_beg + 1);
             return;
         }
-        
         int tm = (t_beg + t_en) / 2;
-        upd(beg, en, val, v * 2,     t_beg,  tm);
-        upd(beg, en, val, v * 2 + 1, tm + 1, t_en);
+        _upd(beg, en, val, v * 2,     t_beg,  tm);
+        _upd(beg, en, val, v * 2 + 1, tm + 1, t_en);
         arr[v] = query_f(arr[v * 2], arr[v * 2 + 1]);
     }
 
-    void set(int beg, int en, T val, int v = 1, int t_beg = -1, int t_en = -1) {
+    void _set(int beg, int en, const T& val, int v = 1, int t_beg = -1, int t_en = -1) {
         if (prepare_beg_en(beg, en, v, t_beg, t_en)) return;
         if (beg <= t_beg && t_en <= en) {
             to_clear[v] = true;
@@ -175,33 +150,31 @@ struct tree{
             return;
         }
         int tm = (t_beg + t_en) / 2;
-        set(beg, en, val, v * 2,     t_beg,  tm);
-        set(beg, en, val, v * 2 + 1, tm + 1, t_en);
+        _set(beg, en, val, v * 2,     t_beg,  tm);
+        _set(beg, en, val, v * 2 + 1, tm + 1, t_en);
         arr[v] = query_f(arr[v * 2], arr[v * 2 + 1]);
     }
 
-    T query(int beg, int en, int v = 1, int t_beg = -1, int t_en = -1) {
+    T _query(int beg, int en, int v = 1, int t_beg = -1, int t_en = -1) {
         if (prepare_beg_en(beg, en, v, t_beg, t_en)) return query_default_val;
         if (beg <= t_beg && t_en <= en) { return arr[v]; }
         int tm = (t_beg + t_en) / 2;
         return query_f(
-            query(beg, en, v * 2,     t_beg,  tm),
-            query(beg, en, v * 2 + 1, tm + 1, t_en)
+            _query(beg, en, v * 2,     t_beg,  tm),
+            _query(beg, en, v * 2 + 1, tm + 1, t_en)
         );
     }
 
-    void debug() {
-        for (int o = 0; o < 2; o ++) {
-            cout << (o == 0 ? "Lazy:\n" : "Arr:\n");
-            for (int i = 0; i < lvl + 1; i ++) {
-                cout << "lvl(" << i << "): ";
-                for (int j = (1 << i); j < (1 << (i + 1)); j ++){
-                    if (o == 0) cout << lazy[j] << " ";
-                    else cout << arr[j] << " ";
-                }
-                cout << endl;
-            }
-        }
+    inline void set(int beg, int en, const T& val) {
+        _set(beg, en, val, 1, 0, tree_size - 1);
+    }
+
+    inline void upd(int beg, int en, const L& val) {
+        _upd(beg, en, val, 1, 0, tree_size - 1);
+    }
+
+    inline T query(int beg, int en) {
+        return _query(beg, en, 1, 0, tree_size - 1);
     }
 };
 
@@ -214,7 +187,6 @@ TT init_TT() {
     res.cnt[0] = 1;
     return res;
 }
-tree<TT, int> T;
 
 void clean() {
     for (int i = 0; i < S; i ++) {
@@ -243,6 +215,7 @@ TT query(int x, int y) {
 void test() {
     int n = 50;
     int m = 10000;
+    Tree<TT, int> T(n, init_TT(), 0, TT{});
     vector<TT> v = {TT{}};
     for (int i = 1; i <= n; i ++) {
         int x = rnd(0, 10);
@@ -276,13 +249,11 @@ void test() {
         }
     }
     clean();
-    T.clean(n);
     dot();
 }
 
 int main() {
     timer tim;
-    T.init_values(10, init_TT(), 0, TT{});
     for (int i = 0; i < TESTS; i ++) test();
     tim.ok(true);
     return 0;

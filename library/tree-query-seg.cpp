@@ -10,44 +10,30 @@ struct Tree{
     int tree_size, init_val;
     vector<T> tree_arr;
 
-    Tree(int lvl, T init_val) {
-        this->tree_size = (1 << lvl);
+    Tree(int n, T init_val) {
+        this->tree_size = (1 << log_floor(n));
         this->init_val = init_val;
         tree_arr.assign(tree_size * 2 + 7, init_val);
     }
 
-    void clear(int m){
-        int beg = tree_size; 
-        int en = tree_size + m;
-        while (beg) {
-            for (int i = beg; i <= en; i ++)
-                tree_arr[i] = init_val;
-            beg /= 2; en /= 2;
-        }
-    }
-
     void upd(int pos, T val) {
-        for (int i = tree_size + pos; i >= 1; i /= 2) {
+        for (int i = tree_size + pos; i >= 1; i /= 2)
             tree_arr[i] += val;
-        }
     }
 
     T query(int beg, int en) {
         T res = init_val;
-        beg += tree_size; en += tree_size;
-        while (beg < en) {
+        for (beg += tree_size, en += tree_size; beg <= en; beg /= 2, en /= 2) {
             if (beg % 2 == 1) res = oper(res, tree_arr[beg ++]);
-            if (en % 2 == 0) res = oper(res, tree_arr[en --]);
-            beg /= 2; en /= 2;
+            if (en  % 2 == 0) res = oper(res, tree_arr[en --]);
         }
-        if (beg == en) res = oper(res, tree_arr[beg]);
         return res;
     }
 };
 
 // inject stop
 
-const int S = 1e4;
+const int S = 2e4;
 int arr[S];
 
 void upd(int x, int y, int val) {
@@ -66,9 +52,11 @@ int query(int x, int y) {
 
 
 void test2() {
-    Tree<int> F(20, 0);
+    
     for (int o = 0; o < TESTS; o ++){
-        int n = rnd(1, S - 1);
+        int n = (1 << rnd(1, log_floor(S))) + rnd(-3, 3);
+        n = min(S - 1, max(1, n));
+        Tree<int> F(n, 0);
         for (int i = 0; i <= n; i ++) arr[i] = 0;
         for (int i = 0; i <= S; i ++) {
             int beg = rnd(1, n);
@@ -86,7 +74,6 @@ void test2() {
                 }
             }
         }
-        F.clear(n);
         dot();
     }
 }

@@ -16,6 +16,9 @@ typedef long long ll;
 typedef pair<ll, ll> pi;
 typedef vector<ll> vi;
 
+int log_floor(ll x) { return 64 - __builtin_clzll(max(1LL, x)); }
+int bit_cnt(ll x) { return __builtin_popcountll(x); }
+
 const int TESTS = 50;
 
 void empty_line(char c = '.') {
