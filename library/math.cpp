@@ -6,6 +6,10 @@
 const ll MOD = 998244353; // TODO
 const ll MAX_SIL = 1e6 + 3; // TODO
 
+ll gcd(ll x, ll y) {
+    return y == 0 ? x : gcd(y, x % y);
+}
+
 ll mult(ll x, ll y) {
     return ((x % MOD) * (y % MOD)) % MOD;
 }

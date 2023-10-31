@@ -23,13 +23,17 @@ typedef tuple<ll, ll, ll, ll> tl4;
 
 typedef vector<int> vi;
 typedef vector<ti2> vi2;
+typedef vector<ti3> vi3;
 typedef vector<ll> vl;
 typedef vector<tl2> vl2;
+typedef vector<tl3> vl3;
 
 typedef set<int> si;
 typedef set<ti2> si2;
+typedef set<ti3> si3;
 typedef set<ll> sl;
 typedef set<tl2> sl2;
+typedef set<tl3> sl3;
 
 template<typename T> using PQS = priority_queue<T, vector<T>, greater<T> >;
 template<typename T> using PQG = priority_queue<T>;
