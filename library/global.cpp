@@ -13,8 +13,8 @@
 #include <sys/time.h>
 using namespace std;
 typedef long long ll;
-typedef pair<ll, ll> pi;
-typedef vector<ll> vi;
+typedef pair<int, int> pi;
+typedef vector<int> vi;
 
 int log_floor(ll x) { return 64 - __builtin_clzll(max(1LL, x)); }
 int bit_cnt(ll x) { return __builtin_popcountll(x); }
@@ -55,7 +55,7 @@ struct timer{
             cout << " | no need for testing\n";
         } else  record();
         exit(0);
-}
+    }
 };
 
 void dot() {

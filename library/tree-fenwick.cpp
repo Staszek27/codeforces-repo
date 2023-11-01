@@ -37,7 +37,8 @@ struct Tree{ // TODO
 
 // inject stop
 
-const int S = 1e4 + 3;
+
+const int S = 2e4;
 int arr[S];
 
 void upd(int x, int y, int val) {
@@ -54,8 +55,8 @@ int query(int x, int y) {
     return res;
 }
 
+
 void test1() {
-    
     for (int o = 0; o < TESTS / 2; o ++) {
         Tree<ll> F(S);
         int n = rnd(1, S - 1);
@@ -104,8 +105,6 @@ void test2() {
         }
         dot();
     }
-   // tim.record();
-    
 }
 
 int main() {
