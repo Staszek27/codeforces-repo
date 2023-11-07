@@ -7,7 +7,8 @@ struct Tree{
     T oper(T x, T y) {
         return x + y; // TODO
     }
-    int tree_size, init_val;
+    int tree_size;
+    T init_val;
     vector<T> tree_arr;
 
     Tree(int n, T init_val) {

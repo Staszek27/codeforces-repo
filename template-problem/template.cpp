@@ -21,10 +21,14 @@ typedef tuple<ll, ll> tl2;
 typedef tuple<ll, ll, ll> tl3;
 typedef tuple<ll, ll, ll, ll> tl4;
 
+typedef vector<bool> vb;
+typedef vector<vb> vvb;
 typedef vector<int> vi;
+typedef vector<vi> vvi;
 typedef vector<ti2> vi2;
 typedef vector<ti3> vi3;
 typedef vector<ll>  vl;
+typedef vector<vl> vvl;
 typedef vector<tl2> vl2;
 typedef vector<tl3> vl3;
 
@@ -59,23 +63,13 @@ int bit_cnt(ll x) { return __builtin_popcountll(x); }
 
 // inject here
 
-void preprocess() {
-
-}
-
-void clear() {
-
-}
-
 void solve(){
-    // here you go
-    clear();
+    
 }
 
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(nullptr);
-    preprocess();
     cout << setprecision(15) << fixed;
     int t = 1;
     cin >> t;

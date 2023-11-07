@@ -68,19 +68,14 @@ def inject_content(content, dest_file):
 
 
 if __name__ == "__main__":
-    try:
-        lib_name = sys.argv[1]
-        if lib_name == '-ls':
-            os.system(f"ls {library_path}")
-        else:   
-            letter = get_best_path_by_timestap().split('/')[-2]
-            dest_file = os.path.join(letter, "wzor.cpp")
-            if lib_name == "-clean": 
-                clean(dest_file)
-            else:
-                inject_content(get_content(lib_name), dest_file)
-    except IndexError:
-        print("Please use like:")
-        print("1. python3 inject.py -ls")
-        print("1. python3 inject.py -clean")
-        print("2. python3 point-seg-tree")
+    lib_name = sys.argv[1]
+    if lib_name == '-ls':
+        os.system(f"ls {library_path}")
+    else:   
+        letter = get_best_path_by_timestap().split('/')[-2]
+        dest_file = os.path.join(letter, "wzor.cpp")
+        if lib_name == "-clean": 
+            clean(dest_file)
+        else:
+            inject_content(get_content(lib_name), dest_file)
+        print(f"OK - {dest_file} modified")
