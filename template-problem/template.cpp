@@ -11,33 +11,56 @@
 #include <iomanip>
 #include <tuple>
 #include <stack>
+#include <deque>
 
 using namespace std;
 typedef long long ll;
-typedef tuple<int, int> ti2;
-typedef tuple<int, int, int> ti3;
-typedef tuple<int, int, int, int> ti4;
-typedef tuple<ll, ll> tl2;
-typedef tuple<ll, ll, ll> tl3;
-typedef tuple<ll, ll, ll, ll> tl4;
+typedef tuple<ll, ll> ti2;
+typedef tuple<ll, ll, ll> ti3;
+typedef tuple<ll, ll, ll, ll> ti4;
 
-typedef vector<bool> vb;
-typedef vector<vb> vvb;
-typedef vector<int> vi;
-typedef vector<vi> vvi;
+typedef vector<bool>   vb;
+typedef vector<vb>     vvb;
+typedef vector<string> vs;
+
+typedef vector<ll>  vi;
 typedef vector<ti2> vi2;
 typedef vector<ti3> vi3;
-typedef vector<ll>  vl;
-typedef vector<vl> vvl;
-typedef vector<tl2> vl2;
-typedef vector<tl3> vl3;
+typedef vector<vi>  vvi;
 
-typedef set<int> si;
+typedef set<ll>  si;
 typedef set<ti2> si2;
 typedef set<ti3> si3;
-typedef set<ll>  sl;
-typedef set<tl2> sl2;
-typedef set<tl3> sl3;
+
+typedef multiset<ll>  msi;
+typedef multiset<ti2> msi2;
+typedef multiset<ti3> msi3;
+
+typedef deque<ll>  dqi;
+typedef deque<ti2> dqi2;
+typedef deque<ti3> dqi3;
+
+
+ostream& operator<<(ostream& os, ti2 x)  { os << "{ "; auto [a, b] = x;       os << a << ", " << b;                            os << " }"; return os; }
+ostream& operator<<(ostream& os, ti3 x)  { os << "{ "; auto [a, b, c] = x;    os << a << ", " << b << ", " << c;               os << " }"; return os; }
+ostream& operator<<(ostream& os, ti4 x)  { os << "{ "; auto [a, b, c, d] = x; os << a << ", " << b << ", " << c << ", " << d;  os << " }"; return os; }
+
+ostream& operator<<(ostream& os, vi x)   { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, vs x)   { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, vb x)   { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, vvb x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, vi2 x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, vi3 x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, vvi x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+
+ostream& operator<<(ostream& os, msi x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, msi2 x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, msi3 x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+
+ostream& operator<<(ostream& os, dqi x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, dqi2 x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, dqi3 x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+
 
 template<typename T> using PQS = priority_queue<T, vector<T>, greater<T> >;
 template<typename T> using PQG = priority_queue<T>;

@@ -10,33 +10,33 @@
 #include <cassert>
 #include <functional>
 #include <iomanip>
+#include <deque>
 #include <sys/time.h>
 using namespace std;
 typedef long long ll;
-typedef tuple<int, int> ti2;
-typedef tuple<int, int, int> ti3;
-typedef tuple<int, int, int, int> ti4;
-typedef tuple<ll, ll> tl2;
-typedef tuple<ll, ll, ll> tl3;
-typedef tuple<ll, ll, ll, ll> tl4;
+typedef tuple<ll, ll> ti2;
+typedef tuple<ll, ll, ll> ti3;
+typedef tuple<ll, ll, ll, ll> ti4;
 
 typedef vector<bool> vb;
 typedef vector<vb> vvb;
-typedef vector<int> vi;
+typedef vector<string> vs;
+typedef vector<ll> vi;
 typedef vector<vi> vvi;
 typedef vector<ti2> vi2;
 typedef vector<ti3> vi3;
-typedef vector<ll>  vl;
-typedef vector<vl> vvl;
-typedef vector<tl2> vl2;
-typedef vector<tl3> vl3;
 
-typedef set<int> si;
+typedef set<ll> si;
 typedef set<ti2> si2;
 typedef set<ti3> si3;
-typedef set<ll>  sl;
-typedef set<tl2> sl2;
-typedef set<tl3> sl3;
+
+typedef multiset<ll> msi;
+typedef multiset<ti2> msi2;
+typedef multiset<ti3> msi3;
+
+typedef deque<ll>  dqi;
+typedef deque<ti2> dqi2;
+typedef deque<ti2> dqi3;
 
 template<typename T> using PQS = priority_queue<T, vector<T>, greater<T> >;
 template<typename T> using PQG = priority_queue<T>;

@@ -2,21 +2,32 @@
 
 // inject here
 
-struct GraphWeighed{
+
+struct GraphMultisetWeighed{
     ll n, m;
-    vector<vi2> G;
+    vector<msi2> G;
     bool weighed, directed, prepare_triggered;
     vi visited, node_val, parent, order, depth, dist, sizes;
     vi3 edges;
 
     void add_edge(ll x, ll y, ll w) {
-        G[x].emplace_back(y, w);
+        G[x].insert({y, w});
         if (!directed) 
-            G[y].emplace_back(x, w);
+            G[y].insert({x, w});
     }
 
-    bool delete_edge(ll x, ll y, ll w) { assert(false); }
-    
+    bool delete_edge(ll x, ll y, ll w) {
+        for (int o = 0; o < 1 + !directed; o ++) {
+            ti2 p = {y, w};
+            auto it = G[x].lower_bound(p);
+            if (it == G[x].end()) return false;
+            if (*it != p) return false; 
+            G[x].erase(it);
+            swap(x, y);
+        }
+        return true;
+    }
+
     void input() {
         cin >> n >> m;
         G.resize(n + 1);
@@ -27,12 +38,12 @@ struct GraphWeighed{
         }
     }
 
-    GraphWeighed(bool directed) {
+    GraphMultisetWeighed(bool directed) {
         this->directed = directed;
         input();
     }
 
-    ~GraphWeighed() {
+    ~GraphMultisetWeighed() {
         assert(prepare_triggered);
     }
 

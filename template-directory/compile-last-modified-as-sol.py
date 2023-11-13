@@ -43,7 +43,7 @@ def get_best_path_by_timestap():
 def compile(path):
     print(f"[compiling {path}]\n")
     return run_command(
-        f"g++ {path} -o {SOLUTION_NAME} -std=c++17  -W -Wall -fstack-protector-all -O3", 
+        f"g++ {path} -o {SOLUTION_NAME} -std=c++20  -W -Wall -fstack-protector-all -O3", 
         with_output_print=True
     )
 

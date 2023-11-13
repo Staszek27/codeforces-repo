@@ -1,5 +1,37 @@
 ## Graphs
 
+```bash {cmd}
+python3 inject.py graph >> logs.txt
+```
+
+```bash {cmd}
+python3 inject.py graph-weighed >> logs.txt
+```
+
+```bash {cmd}
+python3 inject.py graph-multiset >> logs.txt
+```
+
+```bash {cmd}
+python3 inject.py graph-multiset-weighed >> logs.txt
+```
+
+```bash {cmd}
+python3 inject.py graph-bfs >> logs.txt
+```
+
+```bash {cmd}
+python3 inject.py graph-dfs >> logs.txt
+```
+
+```bash {cmd}
+python3 inject.py graph-dijkstra >> logs.txt
+```
+
+```bash {cmd}
+python3 inject.py graph-dsu-and-kruskal >> logs.txt
+```
+
 ## Data structures
 
 ```bash {cmd}
@@ -51,31 +83,29 @@ python3 inject.py  -ls
 
 ## TODO
 
+### Graph
 
-WEIGHED
-Input
-Debug
-Dijksta
-DSU
 LCA
-BFS
-DFS
-Kruskal
 SCC
 Low*
 Hld
 centroid*
 
-rozne
+### rozne
 
+SET
 big numy
 fft*
+
+### slowa
 
 kmp*
 tablicy sufiksowe*
 manaher*
 kmr*
 hasze*
+
+### Geo
 
 otoczka*
 dwa najblizsze punkty*
