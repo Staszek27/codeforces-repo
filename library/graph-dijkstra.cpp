@@ -31,5 +31,6 @@ void dijkstra(auto& G, int node) {
 // inject stop
 
 int main(){
-    no_tested();
+    timer t;
+    t.ok(false, "https://codeforces.com/contest/449/submission/232664299");
 }

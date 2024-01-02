@@ -15,7 +15,7 @@ struct GraphWeighed{
             G[y].emplace_back(x, w);
     }
 
-    bool delete_edge(ll x, ll y, ll w) { assert(false); }
+    bool delete_edge(ll x, ll y, ll w) { assert(false);x;y;w; }
     
     void input() {
         cin >> n >> m;
@@ -53,5 +53,6 @@ struct GraphWeighed{
 // inject stop
 
 int main(){
-    no_tested();
+    timer t;
+    t.ok(false, "https://www.codechef.com/problems/ICL16A");
 }

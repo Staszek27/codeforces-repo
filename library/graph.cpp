@@ -14,7 +14,7 @@ struct Graph{
             G[y].emplace_back(x);
     }
 
-    bool delete_edge(ll x, ll y) { assert(false); }
+    bool delete_edge(ll x, ll y) { assert(false);x;y; }
 
     void input() {
         cin >> n >> m;

@@ -71,13 +71,13 @@ struct timer{
         cout << " | time: " << get_time() - start << endl;;
     }
 
-    void ok(bool tests_exist = false) {
+    void ok(bool tests_exist = false, string additional_com = "no need for testing") {
         if (!tests_exist) {
             empty_line();
         }
         cout << " [OK]";
         if (!tests_exist) {
-            cout << " | no need for testing\n";
+            cout << " | " << additional_com << endl;
         } else  record();
         exit(0);
     }

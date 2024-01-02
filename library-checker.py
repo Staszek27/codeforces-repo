@@ -13,7 +13,7 @@ def get_all_files():
 def test(path):
     if path.split('/')[-1] in IGNORE: 
         return
-    print(path.ljust(30), end="\t", flush=True)
+    print(path.ljust(40), end="\t", flush=True)
     subprocess.run(["g++", path, "-o", "file", "-std=c++20"]) 
     subprocess.run("./file")
     os.remove("./file")

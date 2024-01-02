@@ -68,7 +68,15 @@ python3 inject.py cht >> logs.txt
 ## Math
 
 ```bash {cmd}
-python3 inject.py math >> logs.txt
+python3 inject.py math-mod >> logs.txt
+```
+
+```bash {cmd}
+python3 inject.py math-factors >> logs.txt
+```
+
+```bash {cmd}
+python3 inject.py math-newton >> logs.txt
 ```
 
 

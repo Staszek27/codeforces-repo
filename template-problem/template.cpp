@@ -14,6 +14,8 @@
 #include <deque>
 
 using namespace std;
+
+///// TEMPLATES
 typedef long long ll;
 typedef tuple<ll, ll> ti2;
 typedef tuple<ll, ll, ll> ti3;
@@ -40,32 +42,37 @@ typedef deque<ll>  dqi;
 typedef deque<ti2> dqi2;
 typedef deque<ti3> dqi3;
 
-
-ostream& operator<<(ostream& os, ti2 x)  { os << "{ "; auto [a, b] = x;       os << a << ", " << b;                            os << " }"; return os; }
-ostream& operator<<(ostream& os, ti3 x)  { os << "{ "; auto [a, b, c] = x;    os << a << ", " << b << ", " << c;               os << " }"; return os; }
-ostream& operator<<(ostream& os, ti4 x)  { os << "{ "; auto [a, b, c, d] = x; os << a << ", " << b << ", " << c << ", " << d;  os << " }"; return os; }
-
-ostream& operator<<(ostream& os, vi x)   { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-ostream& operator<<(ostream& os, vs x)   { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-ostream& operator<<(ostream& os, vb x)   { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-ostream& operator<<(ostream& os, vvb x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-ostream& operator<<(ostream& os, vi2 x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-ostream& operator<<(ostream& os, vi3 x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-ostream& operator<<(ostream& os, vvi x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-
-ostream& operator<<(ostream& os, msi x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-ostream& operator<<(ostream& os, msi2 x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-ostream& operator<<(ostream& os, msi3 x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-
-ostream& operator<<(ostream& os, dqi x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-ostream& operator<<(ostream& os, dqi2 x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-ostream& operator<<(ostream& os, dqi3 x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
-
-
 template<typename T> using PQS = priority_queue<T, vector<T>, greater<T> >;
 template<typename T> using PQG = priority_queue<T>;
 
-int log_floor(ll x) { return 64 - __builtin_clzll(max(1LL, x)); } // PLUS ONE!
+///// OUT OPERATORS
+ostream& operator<<(ostream& os, const ti2& x)  { os << "{ "; auto [a, b] = x;       os << a << ", " << b;                            os << " }"; return os; }
+ostream& operator<<(ostream& os, const ti3& x)  { os << "{ "; auto [a, b, c] = x;    os << a << ", " << b << ", " << c;               os << " }"; return os; }
+ostream& operator<<(ostream& os, const ti4& x)  { os << "{ "; auto [a, b, c, d] = x; os << a << ", " << b << ", " << c << ", " << d;  os << " }"; return os; }
+
+ostream& operator<<(ostream& os, const vi& x)   { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, const vs& x)   { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, const vb& x)   { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, const vvb& x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, const vi2& x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, const vi3& x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, const vvi& x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+
+ostream& operator<<(ostream& os, const msi& x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, const msi2& x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, const msi3& x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+
+ostream& operator<<(ostream& os, const dqi& x)  { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, const dqi2& x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+ostream& operator<<(ostream& os, const dqi3& x) { os << "{ "; for (auto e : x) os << e << " "; os << "}"; return os; }
+
+///// IN OPERATORS
+istream& operator>>(istream& is, ti2& x) { ll a, b;       is >> a >> b;           x = {a, b}; return is; }
+istream& operator>>(istream& is, ti3& x) { ll a, b, c;    is >> a >> b >> c;      x = {a, b, c}; return is; }
+istream& operator>>(istream& is, ti4& x) { ll a, b, c, d; is >> a >> b >> c >> d; x = {a, b, c, d}; return is; }
+
+
+int log_floor(long long x) { return 64 - __builtin_clzll(max(1LL, x)); } // PLUS ONE!
 int bit_cnt(ll x) { return __builtin_popcountll(x); }
 
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

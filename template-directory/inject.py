@@ -61,7 +61,7 @@ def inject_content(content, dest_file):
     data = None
     with open(dest_file, "r") as file_obj:
         file_data = file_obj.read()
-        data = file_data.replace(key_word, f"{key_word}\n{content}")
+        data = file_data.replace(key_word, f"{content}\n{key_word}")
 
     with open(dest_file, "w") as file_obj:
         file_obj.write(data)

@@ -5,16 +5,16 @@
 void prep_dsu(auto& G) {
     G.prepare_triggered = true;
     G.parent.assign(G.n + 1, 0);
-    G.sizes.assign(G.n + 1, 0);
+    G.sizes.assign(G.n + 1, 1);
     for (int i = 1; i <= G.n; i ++) 
         G.parent[i] = i;
 }
 
 int fart(auto& G, int node) {
-    return (
+    return G.parent[node] = (
         G.parent[node] == node ? 
             node : 
-            (G.parent[node] = fart(G, node))
+            fart(G, G.parent[node])
     );
 }
 
@@ -32,7 +32,7 @@ void prep_kruskal(auto& G) {
     G.prepare_triggered = true;
     
     for (int i = 1; i <= G.n; i ++)
-        for (auto [x, y] : G[i])
+        for (auto [x, y] : G.G[i])
             if (i <= x)
                 G.edges.emplace_back(y, i, x);
     sort(G.edges.begin(), G.edges.end());
@@ -41,13 +41,15 @@ void prep_kruskal(auto& G) {
 
 vi3 kruskal(auto& G) {
     vi3 res;
-    for (auto [w, x, y] : G.edges)
+    for (auto [w, x, y] : G.edges) {
         if (onion(G, x, y)) res.emplace_back(x, y, w);
+    }
     return res;
 }
 
 // inject stop
 
 int main(){
-    no_tested();
+    timer t;
+    t.ok(false, "https://www.codechef.com/problems/ICL16A");
 }

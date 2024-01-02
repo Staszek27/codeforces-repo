@@ -14,6 +14,7 @@ struct Tree{ // TODO
     }
 
     void upd(int node, const T& val) {
+        assert(node > 0 && node <= n);
         for (int i = node; i <= n; i += i & -i)
             arr[i] += val;
     }
@@ -24,6 +25,7 @@ struct Tree{ // TODO
     }
 
     T query(int node) {
+        assert(node > 0 && node <= n);
         T res = {};
         for (int i = node; i > 0; i -= i & -i) 
             res += arr[i];
