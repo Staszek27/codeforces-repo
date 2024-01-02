@@ -1,4 +1,4 @@
-#include "global.cpp"
+#include "/Users/michal/Documents/codeforces/codeforces-repo/library/global.cpp"
 
 // inject here
 
@@ -16,19 +16,19 @@ struct Tree{
         this->init_val = init_val;
         tree_arr.assign(tree_size * 2 + 7, init_val);
     }
- 
-    T query(int pos) {
-        T res = init_val;
+
+    void upd(int pos, T val) {
         for (int i = tree_size + pos; i >= 1; i /= 2)
-            res = oper(res, tree_arr[i]);
-        return res;
+            tree_arr[i] += val;
     }
- 
-    void upd(int beg, int en, T val) {
+
+    T query(int beg, int en) {
+        T res = init_val;
         for (beg += tree_size, en += tree_size; beg <= en; beg /= 2, en /= 2) {
-            if (beg % 2 == 1) tree_arr[beg ++] = oper(val, tree_arr[beg]);
-            if (en  % 2 == 0) tree_arr[en --]  = oper(val, tree_arr[en]);
+            if (beg % 2 == 1) res = oper(res, tree_arr[beg ++]);
+            if (en  % 2 == 0) res = oper(res, tree_arr[en --]);
         }
+        return res;
     }
 };
 
@@ -51,24 +51,26 @@ int query(int x, int y) {
     return res;
 }
 
-void test1() {
-    for (int o = 0; o < TESTS; o ++) {
-        
+
+void test2() {
+    
+    for (int o = 0; o < TESTS; o ++){
         int n = (1 << rnd(1, log_floor(S))) + rnd(-3, 3);
         n = min(S - 1, max(1, n));
         Tree<int> F(n, 0);
-        for (int i = 0; i < S; i ++) arr[i] = 0;
+        for (int i = 0; i <= n; i ++) arr[i] = 0;
         for (int i = 0; i <= S; i ++) {
             int beg = rnd(1, n);
             int en = rnd(beg, n);
             int val = rnd(1, 10);
-            //cout << beg << " " << en << " " << val << endl;
+            //cout << i << " " << beg << " " << en << " " << val << endl;
+
             if (i & 1) {
-                upd(beg, en, val);
-                F.upd(beg, en, val);
+                upd(beg, beg, val);
+                F.upd(beg, val);
             }
             else {
-                if (query(beg, beg) != F.query(beg)) {
+                if (query(beg, en) != F.query(beg, en)) {
                     nok();
                 }
             }
@@ -79,7 +81,7 @@ void test1() {
 
 int main() {
     timer tim;
-    test1();
+    test2();
     tim.ok(true);
     return 0;
 }

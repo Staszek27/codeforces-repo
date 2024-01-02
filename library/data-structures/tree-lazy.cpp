@@ -1,5 +1,4 @@
-
-#include "global.cpp"
+#include "/Users/michal/Documents/codeforces/codeforces-repo/library/global.cpp"
 
 const int S = 100 + 7;
 int arr[S];

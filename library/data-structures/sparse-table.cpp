@@ -1,4 +1,4 @@
-#include "global.cpp"
+#include "/Users/michal/Documents/codeforces/codeforces-repo/library/global.cpp"
 
 // inject here
 

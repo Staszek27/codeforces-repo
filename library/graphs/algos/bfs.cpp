@@ -1,6 +1,13 @@
-#include "global.cpp"
+#include "/Users/michal/Documents/codeforces/codeforces-repo/library/global.cpp"
 
 // inject here
+
+struct BFS{
+    vi depth;
+    Graph&
+
+    BFS(Graph &)
+};
 
 void prep_bfs(auto& G) {
     G.prepare_triggered = true;

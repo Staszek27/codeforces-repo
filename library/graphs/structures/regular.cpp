@@ -1,12 +1,11 @@
-#include "global.cpp"
+#include "/Users/michal/Documents/codeforces/codeforces-repo/library/global.cpp"
 
 // inject here
 
 struct Graph{
     ll n, m;
     vvi G;
-    bool weighed, directed, prepare_triggered;
-    vi visited, node_val, parent, order, depth, dist, sizes;
+    bool directed;
 
     void add_edge(ll x, ll y) {
         G[x].emplace_back(y);
@@ -14,9 +13,8 @@ struct Graph{
             G[y].emplace_back(x);
     }
 
-    bool delete_edge(ll x, ll y) { assert(false);x;y; }
-
-    void input() {
+    Graph(bool directed) {
+        this->directed = directed;
         cin >> n >> m;
         G.resize(n + 1);
         for (ll i = 0; i < m; i ++) {
@@ -24,15 +22,6 @@ struct Graph{
             cin >> x >> y;
             add_edge(x, y);
         }
-    }
-
-    Graph(bool directed) {
-        this->directed = directed;
-        input();
-    }
-
-    ~Graph() {
-        assert(prepare_triggered);
     }
 
     vi2 get_edges(bool double_edges = false) {
@@ -44,6 +33,10 @@ struct Graph{
         return res;
     }
 
+    const vi& operator[](int node) {
+        return G[node];
+    }
+    
     void debug() {
         cout << "-------------------\n";
         cout << "Graph " << n << " nodes & " << m << " edges\n";

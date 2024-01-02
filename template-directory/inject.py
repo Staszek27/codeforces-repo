@@ -66,16 +66,12 @@ def inject_content(content, dest_file):
     with open(dest_file, "w") as file_obj:
         file_obj.write(data)
 
-
 if __name__ == "__main__":
     lib_name = sys.argv[1]
-    if lib_name == '-ls':
-        os.system(f"ls {library_path}")
-    else:   
-        letter = get_best_path_by_timestap().split('/')[-2]
-        dest_file = os.path.join(letter, "wzor.cpp")
-        if lib_name == "-clean": 
-            clean(dest_file)
-        else:
-            inject_content(get_content(lib_name), dest_file)
-        print(f"OK - {dest_file} modified")
+    letter = get_best_path_by_timestap().split('/')[-2]
+    dest_file = os.path.join(letter, "wzor.cpp")
+    if lib_name == "-clean": 
+        clean(dest_file)
+    else:
+        inject_content(get_content(lib_name), dest_file)
+    print(f"OK - {dest_file} modified")

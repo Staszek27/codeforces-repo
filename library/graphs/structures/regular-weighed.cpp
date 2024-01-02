@@ -1,13 +1,11 @@
-#include "global.cpp"
+#include "/Users/michal/Documents/codeforces/codeforces-repo/library/global.cpp"
 
 // inject here
 
-struct GraphWeighed{
+struct Graph{
     ll n, m;
     vector<vi2> G;
-    bool weighed, directed, prepare_triggered;
-    vi visited, node_val, parent, order, depth, dist, sizes;
-    vi3 edges;
+    bool directed;
 
     void add_edge(ll x, ll y, ll w) {
         G[x].emplace_back(y, w);
@@ -15,9 +13,8 @@ struct GraphWeighed{
             G[y].emplace_back(x, w);
     }
 
-    bool delete_edge(ll x, ll y, ll w) { assert(false);x;y;w; }
-    
-    void input() {
+    Graph(bool directed) {
+        this->directed = directed;
         cin >> n >> m;
         G.resize(n + 1);
         for (ll i = 0; i < m; i ++) {
@@ -27,13 +24,17 @@ struct GraphWeighed{
         }
     }
 
-    GraphWeighed(bool directed) {
-        this->directed = directed;
-        input();
+    vi3 get_edges(bool double_edges = false) {
+        vi3 res;
+        for (int i = 1; i <= n; i ++)
+            for (auto [e, val] : G[i])
+                if (i <= e || double_edges)
+                    res.emplace_back(i, e, val);
+        return res;
     }
 
-    ~GraphWeighed() {
-        assert(prepare_triggered);
+    const vi2& operator[](int node) {
+        return G[node];
     }
 
     void debug() {
@@ -54,5 +55,5 @@ struct GraphWeighed{
 
 int main(){
     timer t;
-    t.ok(false, "https://www.codechef.com/problems/ICL16A");
+    no_tested();
 }

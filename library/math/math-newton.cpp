@@ -1,4 +1,4 @@
-#include "global.cpp"
+#include "/Users/michal/Documents/codeforces/codeforces-repo/library/global.cpp"
 
 
 // inject here
@@ -24,7 +24,7 @@ struct Factorials{
             inv(mult(fac[x - y], fac[y]))
         );
     }
-}
+};
 
 // inject stop
 

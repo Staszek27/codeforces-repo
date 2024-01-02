@@ -1,121 +1,108 @@
-## Graphs
+## data-structures
 
 ```bash {cmd}
-python3 inject.py graph >> logs.txt
+python3 inject.py data-structures/sparse-table.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py graph-weighed >> logs.txt
+python3 inject.py data-structures/tree-lazy.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py graph-multiset >> logs.txt
+python3 inject.py data-structures/tree-query-point.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py graph-multiset-weighed >> logs.txt
+python3 inject.py data-structures/tree-fenwick.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py graph-bfs >> logs.txt
+python3 inject.py data-structures/tree-query-seg.cpp >> logs.txt
+```
+## others
+
+```bash {cmd}
+python3 inject.py others/geo.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py graph-dfs >> logs.txt
+python3 inject.py others/cht.cpp >> logs.txt
+```
+## math
+
+```bash {cmd}
+python3 inject.py math/math-factors.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py graph-dijkstra >> logs.txt
+python3 inject.py math/math-mod.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py graph-dsu-and-kruskal >> logs.txt
+python3 inject.py math/math-newton.cpp >> logs.txt
 ```
-
-## Data structures
+## graphs structures
 
 ```bash {cmd}
-python3 inject.py tree-fenwick >> logs.txt
-```
-
-
-```bash {cmd}
-python3 inject.py tree-lazy >> logs.txt
+python3 inject.py graphs/structures/multiset-weighed.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py tree-query-point >> logs.txt
+python3 inject.py graphs/structures/regular-weighed.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py tree-query-seg >> logs.txt
+python3 inject.py graphs/structures/multiset.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py sparse-table >> logs.txt
+python3 inject.py graphs/structures/regular.cpp >> logs.txt
 ```
-
-## Geo
+## graphs algos
 
 ```bash {cmd}
-python3 inject.py geo >> logs.txt
-```
-
-```bash {cmd}
-python3 inject.py cht >> logs.txt
-```
-
-## Math
-
-```bash {cmd}
-python3 inject.py math-mod >> logs.txt
+python3 inject.py graphs/algos/dijkstra.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py math-factors >> logs.txt
+python3 inject.py graphs/algos/bfs.cpp >> logs.txt
 ```
 
 ```bash {cmd}
-python3 inject.py math-newton >> logs.txt
+python3 inject.py graphs/algos/dsu-and-kruskal.cpp >> logs.txt
+```
+
+```bash {cmd}
+python3 inject.py graphs/algos/tree-prep.cpp >> logs.txt
 ```
 
 
-## Miscellaneous
+## tools
+
+### clean libraries in the current file
 
 ```bash {cmd}
 python3 inject.py  -clean >> logs.txt
 ```
+
+### show lib
+
 ```bash {cmd}
 python3 inject.py  -ls
 ```
 
-## TODO
+### update markdown
 
-### Graph
+```bash {cmd}
+cd ~/Documents/codeforces/codeforces-repo && python3 library-injector-gen.py
 
-LCA
-SCC
-Low*
-Hld
-centroid*
+```
 
-### rozne
+### update files in the current directory
 
-SET
-big numy
-fft*
-
-### slowa
-
-kmp*
-tablicy sufiksowe*
-manaher*
-kmr*
-hasze*
-
-### Geo
-
-otoczka*
-dwa najblizsze punkty*
-sortowanie katowe*
+```bash {cmd}
+P=$(pwd)
+cd ~/Documents/codeforces/codeforces-repo
+./preparer.sh $P reset
+```
 

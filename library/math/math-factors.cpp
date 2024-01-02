@@ -1,4 +1,4 @@
-#include "global.cpp"
+#include "/Users/michal/Documents/codeforces/codeforces-repo/library/global.cpp"
 
 
 // inject here
@@ -16,6 +16,10 @@ struct Factors{
                 factors[j].emplace_back(i);
             }
         }
+    }
+
+    const vi& operator[](int idx) {
+        return factors[idx];
     }
 };
 

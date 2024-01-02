@@ -1,17 +1,27 @@
-#include "global.cpp"
+#include "/Users/michal/Documents/codeforces/codeforces-repo/library/global.cpp"
 
 // inject here
 
-struct GraphMultiset{
+struct Graph{
     ll n, m;
     vector<msi> G;
-    bool weighed, directed, prepare_triggered;
-    vi visited, node_val, parent, order, depth, dist, sizes;
+    bool directed;
 
     void add_edge(ll x, ll y) {
         G[x].insert(y);
         if (!directed) 
             G[y].insert(x);
+    }
+    
+    Graph(bool directed) {
+        this->directed = directed;
+        cin >> n >> m;
+        G.resize(n + 1);
+        for (ll i = 0; i < m; i ++) {
+            ll x, y;
+            cin >> x >> y;
+            add_edge(x, y);
+        }
     }
 
     bool delete_edge(ll x, ll y) {
@@ -24,24 +34,20 @@ struct GraphMultiset{
         }
         return true;
     }
-    
-    void input() {
-        cin >> n >> m;
-        G.resize(n + 1);
-        for (ll i = 0; i < m; i ++) {
-            ll x, y;
-            cin >> x >> y;
-            add_edge(x, y);
+
+    vi2 edges(bool double_edges = false) {
+        vi2 res;
+        for (int i = 0; i <= n; i ++) {
+            for (auto neib : G[i]) {
+                if (i <= neib || double_edges)
+                    res.emplace_back(i, neib);
+            }
         }
+        return res;
     }
 
-    GraphMultiset(bool directed) {
-        this->directed = directed;
-        input();
-    }
-
-    ~GraphMultiset() {
-        assert(prepare_triggered);
+    const msi& operator[](int node) {
+        return G[node];
     }
 
     void debug() {

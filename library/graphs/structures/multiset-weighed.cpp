@@ -1,19 +1,28 @@
-#include "global.cpp"
+#include "/Users/michal/Documents/codeforces/codeforces-repo/library/global.cpp"
 
 // inject here
 
 
-struct GraphMultisetWeighed{
+struct Graph{
     ll n, m;
     vector<msi2> G;
-    bool weighed, directed, prepare_triggered;
-    vi visited, node_val, parent, order, depth, dist, sizes;
-    vi3 edges;
+    bool directed;
 
     void add_edge(ll x, ll y, ll w) {
         G[x].insert({y, w});
         if (!directed) 
             G[y].insert({x, w});
+    }
+
+    Graph(bool directed) {
+        this->directed = directed;
+        cin >> n >> m;
+        G.resize(n + 1);
+        for (ll i = 0; i < m; i ++) {
+            ll x, y, w;
+            cin >> x >> y >> w;
+            add_edge(x, y, w);
+        }
     }
 
     bool delete_edge(ll x, ll y, ll w) {
@@ -28,23 +37,19 @@ struct GraphMultisetWeighed{
         return true;
     }
 
-    void input() {
-        cin >> n >> m;
-        G.resize(n + 1);
-        for (ll i = 0; i < m; i ++) {
-            ll x, y, w;
-            cin >> x >> y >> w;
-            add_edge(x, y, w);
+    vi3 edges(bool double_edges = false) {
+        vi3 res;
+        for (int i = 0; i <= n; i ++) {
+            for (auto [neib, val] : G[i]) {
+                if (i <= neib || double_edges)
+                    res.emplace_back(i, neib, val);
+            }
         }
+        return res;
     }
 
-    GraphMultisetWeighed(bool directed) {
-        this->directed = directed;
-        input();
-    }
-
-    ~GraphMultisetWeighed() {
-        assert(prepare_triggered);
+    const msi2& operator[](int node) {
+        return G[node];
     }
 
     void debug() {
